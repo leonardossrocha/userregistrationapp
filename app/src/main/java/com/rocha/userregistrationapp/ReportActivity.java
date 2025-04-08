@@ -1,5 +1,7 @@
 package com.rocha.userregistrationapp;
 
+import android.widget.Button;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,10 @@ public class ReportActivity extends AppCompatActivity {
 
         textViewReport = findViewById(R.id.textViewReport);
 
+        // Encontra o botão e define um clique para voltar
+        Button btnVoltar = findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(v -> voltarParaCadastro());
+
         UserDatabase db = Room.databaseBuilder(getApplicationContext(),
                 UserDatabase.class, "user-database").allowMainThreadQueries().build();
         UserDao userDao = db.userDao();
@@ -29,5 +35,12 @@ public class ReportActivity extends AppCompatActivity {
         }
 
         textViewReport.setText(report.toString());
+    }
+
+    public void voltarParaCadastro() {
+        // Intenção para abrir a tela de cadastro
+        Intent intent = new Intent(ReportActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Fecha a tela de relatório para não ficar acumulada na pilha de atividades
     }
 }

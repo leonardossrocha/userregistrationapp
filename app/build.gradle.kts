@@ -48,5 +48,5 @@ dependencies {
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
 
     // Opcional: Suporte para corrotinas (caso queira usar Room com Kotlin)
-    implementation ("androidx.room:room-ktx:2.6.1")
+    // implementation ("androidx.room:room-ktx:2.6.1")
 }

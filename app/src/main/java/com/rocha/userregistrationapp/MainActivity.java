@@ -3,13 +3,17 @@ package com.rocha.userregistrationapp;
 // Importação das classes necessárias para a funcionalidade do aplicativo
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+// import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
-import java.util.List;
+// import java.util.List;
+
+//Classe para verificar erros com Log
+import android.util.Log;
+
 
 // Classe principal da atividade de cadastro de usuários
 public class MainActivity extends AppCompatActivity {
@@ -42,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Configura o botão de salvar usuário
         buttonSave.setOnClickListener(v -> {
+            // Confirma que o clique ocorreu
+            Log.d("MainActivity", "Botão Cadastrar Usuário clicado!");
+
             // Obtém os valores digitados pelo usuário
             String name = editTextName.getText().toString();
             String cpf = editTextCPF.getText().toString();
             String email = editTextEmail.getText().toString();
             String phone = editTextPhone.getText().toString();
+
+
+            // Verifica se os valores estão sendo capturados corretamente
+            Log.d("MainActivity", "Nome: " + name + ", CPF: " + cpf + ", Email: " + email + ", Telefone: " + phone);
 
             // Verifica se os campos obrigatórios (Nome e CPF) foram preenchidos
             if (!name.isEmpty() && !cpf.isEmpty()) {
@@ -54,9 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 User user = new User(name, cpf, email, phone);
                 userDao.insert(user);
 
+                // Confirma a inserção
+                Log.d("MainActivity", "Usuário inserido no banco de dados.");
+
                 // Exibe uma mensagem confirmando o cadastro
                 Toast.makeText(MainActivity.this, "Usuário cadastrado!", Toast.LENGTH_SHORT).show();
             } else {
+
+                // Mostra erro se os campos estiverem vazios
+                Log.d("MainActivity", "Erro: Campos obrigatórios vazios!");
+
                 // Exibe uma mensagem de erro se os campos obrigatórios não forem preenchidos
                 Toast.makeText(MainActivity.this, "Preencha os campos obrigatórios!", Toast.LENGTH_SHORT).show();
             }
