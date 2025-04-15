@@ -1,4 +1,4 @@
-// Define o pacote ao qual esta classe pertence
+    // Define o pacote ao qual esta classe pertence
 package com.rocha.userregistrationapp;
 
 // Importa as anotações do Room necessárias para mapear esta classe como uma entidade do banco de dados
